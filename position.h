@@ -49,20 +49,20 @@ public:
    //               Allowing for comparisions, copying, etc.
    Position(const Position & rhs) { this->colRow = rhs.colRow; }
    Position() : colRow(0x99)      {              }
-   bool isInvalid() const         { return colRow == 0xff; }
-   bool isValid()   const         { return colRow != 0xff; }
+   bool isInvalid() const;
+   bool isValid()   const;
    void setValid()                { colRow = 0x00; }
    void setInvalid()              { colRow = 0xff; }
    bool operator <  (const Position & rhs) const { return this->colRow < rhs.colRow;  }
    bool operator == (const Position & rhs) const { return this->colRow == rhs.colRow; }
    bool operator != (const Position & rhs) const { return this->colRow != rhs.colRow; }
-   const Position & operator =  (const Position & rhs) { return *this; }
+   const Position & operator =  (const Position & rhs)  { colRow = rhs.colRow; return *this; }
    
    // Location : The Position class can work with locations, which
    //            are 0...63 where we start in row 0, then row 1, etc.
    Position(int location) : colRow((uint8_t)(location/* % 8 * 16 + location / 8*/)) { }
-   int getLocation() const               { return (int)colRow; }
-   void setLocation(int location)        {           }
+   int getLocation() const;
+   void setLocation(int location);
 
    
    // Row/Col : The position class can work with row/column,
@@ -70,16 +70,16 @@ public:
    Position(int c, int r) : colRow((uint8_t)(c * 16 + r)) {}
    virtual int getCol() const;
    virtual int getRow() const;
-   void setRow(int r)                     {           }
-   void setCol(int c)                     {           }
-   void set(int c, int r)                 {           }
+   void setRow(int r);
+   void setCol(int c);
+   void set(int c, int r);
 
    // Text:    The Position class can work with textual coordinates,
    //          such as "d4"
    
-   Position(const char * s) : colRow(0x99) {   }
-   const Position & operator =  (const char     * rhs) { return *this; }
-   const Position & operator =  (const string   & rhs) { return *this; }
+   Position(const char * s);
+   const Position & operator =  (const char     * rhs);
+   const Position & operator =  (const string   & rhs);
 
    
    // Pixels:    The Position class can work with screen coordinates,
@@ -99,8 +99,8 @@ public:
    Position(const Position & rhs, const Delta & delta) : colRow(-1) {  }
    void adjustRow(int dRow)   { }
    void adjustCol(int dCol)   { }
-   const Position & operator += (const Delta & rhs) { return *this; }
-   Position operator + (const Delta & rhs) const { return *this; }
+   const Position & operator += (const Delta & rhs);
+   Position operator + (const Delta & rhs) const    { return *this; }
 
 private:
    void set(uint8_t colRowNew) { }
