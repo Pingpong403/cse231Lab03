@@ -69,7 +69,7 @@ public:
    //           which are 0..7 and 0...7
    Position(int c, int r) : colRow((uint8_t)(c * 16 + r)) {}
    virtual int getCol() const;
-   virtual int getRow() const { return 9; }
+   virtual int getRow() const;
    void setRow(int r)                     {           }
    void setCol(int c)                     {           }
    void set(int c, int r)                 {           }

@@ -30,9 +30,29 @@ istream & operator >> (istream & in,  Position & rhs)
 int Position::getCol() const
 {
    int col = (int)colRow / 16;
-   if (col == 16)
+   if (0 > col || col > 7)
+   {
+      return -1;
+   }
+   int row = (int)colRow % 16;
+   if (0 > row || row > 7)
    {
       return -1;
    }
    return col;
+}
+
+int Position::getRow() const
+{
+   int row = (int)colRow % 16;
+   if (0 > row || row > 7)
+   {
+      return -1;
+   }
+   int col = (int)colRow / 16;
+   if (0 > col || col > 7)
+   {
+      return -1;
+   }
+   return row;
 }
