@@ -19,8 +19,34 @@ using namespace std;
  * MOVE : DEFAULT CONSTRUCTOR
  ***************************************************/
 Move::Move()
-	: isWhite(false)
+	: promote(INVALID),
+	  capture(INVALID),
+	  moveType(MOVE_ERROR),
+	  isWhite(false)
 {
+}
+
+/***************************************************
+ * MOVE : NON-DEFAULT CONSTRUCTOR
+ ***************************************************/
+Move::Move(char* input)
+{
+	source = input[0] + input[1];
+	dest = input[2] + input[3];
+	if (input[4] != '/0')
+	{
+		switch (input[4])
+		{
+		case 'c':
+			// IMPLEMENT king castle side
+			break;
+		case 'C':
+			// IMPLEMENT queen side castle
+			break;
+			// IMPLEMENT OTHER CASES
+		}
+	}
+
 }
 
 /***************************************************
@@ -64,34 +90,33 @@ char Move::letterFromPieceType(PieceType pt) const
  ***************************************************/
 PieceType Move::pieceTypeFromLetter(char letter) const
 {
-	//	PieceType pt;
-	//	switch (letter)
-	//	{
-	//	case 'i':
-	//		pt = INVALID;
-	//		break;
-	//	case ' ':
-	//		pt = SPACE;
-	//		break;
-	//	case KING:
-	//		pt = 'k';
-	//		break;
-	//	case QUEEN:
-	//		pt = 'q';
-	//		break;
-	//	case ROOK:
-	//		pt = 'r';
-	//		break;
-	//	case BISHOP:
-	//		pt = 'b';
-	//		break;
-	//	case KNIGHT:
-	//		pt = 'n';
-	//		break;
-	//	case PAWN:
-	//		pt = 'p';
-	//		break;
-	//	}
-	//
-		return SPACE;
+	PieceType pt;
+	switch (letter)
+	{
+	case 'i':
+		pt = INVALID;
+		break;
+	case ' ':
+		pt = SPACE;
+		break;
+	case 'k':
+		pt = KING;
+		break;
+	case 'q':
+		pt = QUEEN;
+		break;
+	case 'r':
+		pt = ROOK;
+		break;
+	case 'b':
+		pt = BISHOP;
+		break;
+	case 'n':
+		pt = KNIGHT;
+		break;
+	case 'p':
+		pt = PAWN;
+		break;
+	}
+	return pt;
 }

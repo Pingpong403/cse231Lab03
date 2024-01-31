@@ -21,38 +21,38 @@ public:
    void run() 
    {
       // Ticket 4: Move Core
-      constructor_default(); // HELP
-      //letterFromPieceType_space();
-      //letterFromPieceType_pawn();
-      //letterFromPieceType_bishop();
-      //letterFromPieceType_knight();
-      //letterFromPieceType_rook();
-      //letterFromPieceType_queen();
-      //letterFromPieceType_king();
-      //pieceTypeFromLetter_pawn();
-      //pieceTypeFromLetter_knight();
-      //pieceTypeFromLetter_bishop();
-      //pieceTypeFromLetter_rook();
-      //pieceTypeFromLetter_king();
-      //pieceTypeFromLetter_queen();
+      constructor_default();
+      letterFromPieceType_space();
+      letterFromPieceType_pawn();
+      letterFromPieceType_bishop();
+      letterFromPieceType_knight();
+      letterFromPieceType_rook();
+      letterFromPieceType_queen();
+      letterFromPieceType_king();
+      pieceTypeFromLetter_pawn();
+      pieceTypeFromLetter_knight();
+      pieceTypeFromLetter_bishop();
+      pieceTypeFromLetter_rook();
+      pieceTypeFromLetter_king();
+      pieceTypeFromLetter_queen();
 
       //// Ticket 5: Move Text
-      //read_simple();
-      //read_capture();
-      //read_enpassant();
-      //read_castleKing();
-      //read_castleQueen();
-      //constructString_simple();
-      //assign_simple();
-      //assign_capture();
-      //assign_enpassant();
-      //assign_castleKing();
-      //assign_castleQueen();
-      //getText_simple();
-      //getText_capture();
-      //getText_enpassant();
-      //getText_castleKing();
-      //getText_castleQueen();
+      read_simple();
+      read_capture();
+      read_enpassant();
+      read_castleKing();
+      read_castleQueen();
+      constructString_simple();
+      assign_simple();
+      assign_capture();
+      assign_enpassant();
+      assign_castleKing();
+      assign_castleQueen();
+      getText_simple();
+      getText_capture();
+      getText_enpassant();
+      getText_castleKing();
+      getText_castleQueen();
 
       report("Move");
    }

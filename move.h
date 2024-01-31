@@ -29,9 +29,11 @@ public:
    friend TestMove;
    friend TestBoard;
 
-   // constructor
+   // Default Constructor
    Move();
 
+   // Non-Default Constructor
+   Move(char* input);
 
 private:
 	char letterFromPieceType(PieceType pt) const;
