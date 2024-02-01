@@ -60,7 +60,7 @@ void Move::assignMove(const char * input)
       break;
    case 'E':
       moveType = ENPASSANT;
-      capture = SPACE;
+      capture = PAWN;
       break;
    case 'q':
       moveType = MOVE;
@@ -92,7 +92,7 @@ void Move::assignMove(const char * input)
 /***************************************************
  * MOVE : LETTER FROM PIECE TYPE
  ***************************************************/
-Move::Move(const Position source, const Position destination, const MoveType moveType = MOVE, const PieceType capture = SPACE)
+Move::Move(const Position source, const Position destination, const MoveType moveType, const PieceType capture)
 {
    this->source = source;
    dest = destination;

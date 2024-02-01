@@ -37,7 +37,7 @@ public:
    void assignMove(const char * input);
    
    // Or we can take in separate values
-   Move(const Position source, const Position destination, const MoveType moveType, const PieceType capture);
+   Move(const Position source, const Position destination, const MoveType moveType=MOVE, const PieceType capture=SPACE);
    
    Position getSource() { return source.getLocation(); }
    Position getDestination() { return dest.getLocation(); }

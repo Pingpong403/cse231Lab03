@@ -298,7 +298,7 @@ void TestMove::getText_simple()
    // SETUP
    
    // EXERCISE
-   Move move = Move(Position(36), Position(44), move.MOVE, SPACE);
+   Move move = Move(Position(36), Position(44), move.MOVE);
    
    // VERIFY
    assertUnit(move.getText() == "e5e6");
@@ -338,7 +338,7 @@ void TestMove::getText_enpassant()
    // SETUP
    
    // EXERCISE
-   Move move = Move(Position(36), Position(45), move.ENPASSANT, SPACE);
+   Move move = Move(Position(36), Position(45), move.ENPASSANT, PAWN);
    
    // VERIFY
    assertUnit(move.getText() == "e5f6E");
@@ -357,7 +357,7 @@ void TestMove::getText_castleKing()
    // SETUP
    
    // EXERCISE
-   Move move = Move(Position(4), Position(6), move.CASTLE_KING, SPACE);
+   Move move = Move(Position(4), Position(6), move.CASTLE_KING);
    
    // VERIFY
    assertUnit(move.getText() == "e1g1c");
@@ -376,7 +376,7 @@ void TestMove::getText_castleQueen()
    // SETUP
    
    // EXERCISE
-   Move move = Move(Position(4), Position(2), move.CASTLE_QUEEN, SPACE);
+   Move move = Move(Position(4), Position(2), move.CASTLE_QUEEN);
    
    // VERIFY
    assertUnit(move.getText() == "e1c1C");
