@@ -23,11 +23,12 @@ Space space;
 ***********************************************/
 const Piece& Board::operator [] (const Position& pos) const
 {
-   return space;
+   // How to return a pointer to whatever piece is here?
+   return *board[pos.getCol()][0];
 }
 Piece& Board::operator [] (const Position& pos)
 {
-   return space;
+   // TODO
 }
 
 
