@@ -114,18 +114,18 @@ Position::Position(const char * s)
    {
       if (first >= 97)
          first -= 32;
-      int col = first - 65;
+      col = first - 65;
       if (second >= zeroChar && second <= sevenChar)                                      // second is a valid number
          row = second - (zeroChar + 1); // row starts at 1 visually
    }
    else if (first >= zeroChar && first <= sevenChar)                                      // first is a valid number
    {
-      int row = first - (zeroChar + 1); // row starts at 1 visually
+      row = first - (zeroChar + 1); // row starts at 1 visually
       if ((second >= 97 && second <= 104) || (second >= 65 && second <= 72)) // second is a valid letter
       {
          if (second >= 97)
             second -= 32;
-         int col = second - 65;
+         col = second - 65;
       }
    }
    colRow = (uint8_t)(col * 16 + row);

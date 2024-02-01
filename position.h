@@ -60,7 +60,7 @@ public:
    
    // Location : The Position class can work with locations, which
    //            are 0...63 where we start in row 0, then row 1, etc.
-   Position(int location) : colRow((uint8_t)(location/* % 8 * 16 + location / 8*/)) { }
+   Position(int location) : colRow((uint8_t)(location % 8 * 16 + location / 8)) { }
    int getLocation() const;
    void setLocation(int location);
 
@@ -103,7 +103,7 @@ public:
    Position operator + (const Delta & rhs) const    { return *this; }
 
 private:
-   void set(uint8_t colRowNew) { }
+   void set(uint8_t colRowNew) { colRow = colRowNew; }
    
    uint8_t colRow;
    static double squareWidth;

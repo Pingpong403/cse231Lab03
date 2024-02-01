@@ -32,8 +32,21 @@ public:
    // Default Constructor
    Move();
 
-   // Non-Default Constructor
-   Move(char* input);
+   // We can work with a single input
+   Move(const char* input);
+   void assignMove(const char * input);
+   
+   // Or we can take in separate values
+   Move(const Position source, const Position destination, const MoveType moveType, const PieceType capture);
+   
+   Position getSource() { return source.getLocation(); }
+   Position getDestination() { return dest.getLocation(); }
+   PieceType getPromote() { return promote; }
+   PieceType getCapture() { return capture; }
+   MoveType getMoveType() { return moveType; }
+   bool getIsWhite() { return isWhite; }
+   string getText() { return text; }
+   
 
 private:
 	char letterFromPieceType(PieceType pt) const;

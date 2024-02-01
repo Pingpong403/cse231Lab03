@@ -46,8 +46,21 @@ void TestMove::constructor_default()
   **************************************/
 void TestMove::constructString_simple()
 {
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+   // SETUP
+   
+   // EXERCISE
+   Move move = Move("e5e6");
+   
+   // VERIFY
+   assertUnit(move.source.getLocation() == 36);
+   assertUnit(move.dest.getLocation() == 44);
+   assertUnit(move.promote == SPACE);
+   assertUnit(move.capture == SPACE);
+   assertUnit(move.moveType == move.MOVE);
+   assertUnit(move.isWhite == false);
+   assertUnit(move.text == "e5e6");
+   
+} // TEARDOWN
 
 
  /*************************************
@@ -59,9 +72,18 @@ void TestMove::constructString_simple()
   **************************************/
 void TestMove::read_simple()
 {
+   // SETUP
+   Move move;
    
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+   // EXERCISE
+   move = Move("e5d6");
+   
+   // VERIFY
+   assertUnit(move.getSource() == 36);
+   assertUnit(move.getDestination() == 43);
+   assertUnit(move.getMoveType() == move.MOVE);
+   
+} // TEARDOWN
 
  /*************************************
   * READ capture move 
@@ -73,8 +95,19 @@ void TestMove::read_simple()
   **************************************/
 void TestMove::read_capture()
 {
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+   // SETUP
+   Move move;
+   
+   // EXERCISE
+   move = Move("e5d6r");
+   
+   // VERIFY
+   assertUnit(move.getSource() == 36);
+   assertUnit(move.getDestination() == 43);
+   assertUnit(move.getMoveType() == move.MOVE);
+   assertUnit(move.getCapture() == ROOK);
+   
+} // TEARDOWN
 
  /*************************************
   * READ enpassant move 
@@ -85,8 +118,18 @@ void TestMove::read_capture()
   **************************************/
 void TestMove::read_enpassant()
 {
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+   // SETUP
+   Move move;
+   
+   // EXERCISE
+   move = Move("e5d6E");
+   
+   // VERIFY
+   assertUnit(move.getSource() == 36);
+   assertUnit(move.getDestination() == 43);
+   assertUnit(move.getMoveType() == move.ENPASSANT);
+   
+} // TEARDOWN
 
  /*************************************
   * READ king side castle
@@ -97,8 +140,18 @@ void TestMove::read_enpassant()
   **************************************/
 void TestMove::read_castleKing()
 {
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+   // SETUP
+   Move move;
+   
+   // EXERCISE
+   move = Move("e1g1c");
+   
+   // VERIFY
+   assertUnit(move.getSource() == 4);
+   assertUnit(move.getDestination() == 6);
+   assertUnit(move.getMoveType() == move.CASTLE_KING);
+   
+} // TEARDOWN
 
 
  /*************************************
@@ -110,20 +163,38 @@ void TestMove::read_castleKing()
   **************************************/
 void TestMove::read_castleQueen()
 {
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+   // SETUP
+   Move move;
+   
+   // EXERCISE
+   move = Move("e1c1C");
+   
+   // VERIFY
+   assertUnit(move.getSource() == 4);
+   assertUnit(move.getDestination() == 2);
+   assertUnit(move.getMoveType() == move.CASTLE_QUEEN);
+   
+} // TEARDOWN
 
  /*************************************
   * ASSIGN simple move
   * Input:  e5e6
   * Output: source=4,0
   *         dest  =2,0
-  *         type  =CASTLE_QUEEN
   **************************************/
 void TestMove::assign_simple()
 {
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+   // SETUP
+   Move move;
+   
+   // EXERCISE
+   move.assignMove("e5e6");
+   
+   // VERIFY
+   assertUnit(move.source.getLocation() == 36);
+   assertUnit(move.dest.getLocation() == 44);
+   
+} // TEARDOWN
 
  /*************************************
   * ASSIGN capture move
@@ -135,8 +206,19 @@ void TestMove::assign_simple()
   **************************************/
 void TestMove::assign_capture()
 {
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+   // SETUP
+   Move move;
+   
+   // EXERCISE
+   move.assignMove("e5d6r");
+   
+   // VERIFY
+   assertUnit(move.source.getLocation() == 36);
+   assertUnit(move.dest.getLocation() == 43);
+   assertUnit(move.moveType == move.MOVE);
+   assertUnit(move.capture == ROOK);
+   
+} // TEARDOWN
 
  /*************************************
   * ASSIGN enpassant move
@@ -147,8 +229,18 @@ void TestMove::assign_capture()
   **************************************/
 void TestMove::assign_enpassant()
 {
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+   // SETUP
+   Move move;
+   
+   // EXERCISE
+   move.assignMove("e5d6E");
+   
+   // VERIFY
+   assertUnit(move.source.getLocation() == 36);
+   assertUnit(move.dest.getLocation() == 43);
+   assertUnit(move.moveType == move.ENPASSANT);
+   
+} // TEARDOWN
 
  /*************************************
   * ASSIGN king side castle
@@ -159,8 +251,18 @@ void TestMove::assign_enpassant()
   **************************************/
 void TestMove::assign_castleKing()
 {
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+   // SETUP
+   Move move;
+   
+   // EXERCISE
+   move.assignMove("e1g1c");
+   
+   // VERIFY
+   assertUnit(move.source.getLocation() == 4);
+   assertUnit(move.dest.getLocation() == 6);
+   assertUnit(move.moveType == move.CASTLE_KING);
+   
+} // TEARDOWN
 
  /*************************************
   * ASSIGN queen side castle
@@ -171,8 +273,18 @@ void TestMove::assign_castleKing()
   **************************************/
 void TestMove::assign_castleQueen()
 {
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+   // SETUP
+   Move move;
+   
+   // EXERCISE
+   move.assignMove("e1c1C");
+   
+   // VERIFY
+   assertUnit(move.source.getLocation() == 4);
+   assertUnit(move.dest.getLocation() == 2);
+   assertUnit(move.moveType == move.CASTLE_QUEEN);
+   
+} // TEARDOWN
 
  /*************************************
   * GET TEXT simple move
@@ -183,8 +295,15 @@ void TestMove::assign_castleQueen()
   **************************************/
 void TestMove::getText_simple()
 {
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+   // SETUP
+   
+   // EXERCISE
+   Move move = Move(Position(36), Position(44), move.MOVE, SPACE);
+   
+   // VERIFY
+   assertUnit(move.getText() == "e5e6");
+   
+} // TEARDOWN
 
  /*************************************
   * GET TEXT capture
@@ -196,8 +315,15 @@ void TestMove::getText_simple()
   **************************************/
 void TestMove::getText_capture()
 {
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+   // SETUP
+   
+   // EXERCISE
+   Move move = Move(Position(36), Position(44), move.MOVE, ROOK);
+   
+   // VERIFY
+   assertUnit(move.getText() == "e5e6r");
+   
+} // TEARDOWN
 
  /*************************************
   * GET TEXT en passant
@@ -209,8 +335,15 @@ void TestMove::getText_capture()
   **************************************/
 void TestMove::getText_enpassant()
 {
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+   // SETUP
+   
+   // EXERCISE
+   Move move = Move(Position(36), Position(45), move.ENPASSANT, SPACE);
+   
+   // VERIFY
+   assertUnit(move.getText() == "e5f6E");
+   
+} // TEARDOWN
 
  /*************************************
   * GET TEXT king side castle
@@ -221,8 +354,15 @@ void TestMove::getText_enpassant()
   **************************************/
 void TestMove::getText_castleKing()
 {
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+   // SETUP
+   
+   // EXERCISE
+   Move move = Move(Position(4), Position(6), move.CASTLE_KING, SPACE);
+   
+   // VERIFY
+   assertUnit(move.getText() == "e1g1c");
+   
+} // TEARDOWN
 
  /*************************************
   * GET TEXT queen side castle
@@ -233,8 +373,15 @@ void TestMove::getText_castleKing()
   **************************************/
 void TestMove::getText_castleQueen()
 {
-   assertUnit(NOT_YET_IMPLEMENTED);
-}
+   // SETUP
+   
+   // EXERCISE
+   Move move = Move(Position(4), Position(2), move.CASTLE_QUEEN, SPACE);
+   
+   // VERIFY
+   assertUnit(move.getText() == "e1c1C");
+   
+} // TEARDOWN
 
  /*************************************
   * LETTER FROM PIECE TYPE space

@@ -12,6 +12,7 @@
 #include <cassert>
 #include <iostream>
 #include <sstream>
+#include <string.h>
 
 using namespace std;
 
@@ -27,26 +28,125 @@ Move::Move()
 }
 
 /***************************************************
- * MOVE : NON-DEFAULT CONSTRUCTOR
+ * MOVE : NON-DEFAULT CONSTRUCTOR (move)
  ***************************************************/
-Move::Move(char* input)
+Move::Move(const char* input)
 {
-	source = input[0] + input[1];
-	dest = input[2] + input[3];
-	if (input[4] != '/0')
-	{
-		switch (input[4])
-		{
-		case 'c':
-			// IMPLEMENT king castle side
-			break;
-		case 'C':
-			// IMPLEMENT queen side castle
-			break;
-			// IMPLEMENT OTHER CASES
-		}
-	}
+   assignMove(input);
+   isWhite = false;
+}
 
+/***************************************************
+ * MOVE : ASSIGN A MOVE
+ ***************************************************/
+void Move::assignMove(const char * input)
+{
+   char s_char[3] = {input[0], input[1], '\0'};
+   source = Position(s_char);
+   
+   char d_char[3] = {input[2], input[3], '\0'};
+   dest = Position(d_char);
+   
+   promote = SPACE;
+   switch (input[4])
+   {
+   case 'c':
+      moveType = CASTLE_KING;
+      capture = SPACE;
+      break;
+   case 'C':
+      moveType = CASTLE_QUEEN;
+      capture = SPACE;
+      break;
+   case 'E':
+      moveType = ENPASSANT;
+      capture = SPACE;
+      break;
+   case 'q':
+      moveType = MOVE;
+      capture = QUEEN;
+      break;
+   case 'b':
+      moveType = MOVE;
+      capture = BISHOP;
+      break;
+   case 'n':
+      moveType = MOVE;
+      capture = KNIGHT;
+      break;
+   case 'r':
+      moveType = MOVE;
+      capture = ROOK;
+      break;
+   case 'p':
+      moveType = MOVE;
+      capture = PAWN;
+      break;
+   default:
+      moveType = MOVE;
+      capture = SPACE;
+   }
+   text = (string)input;
+}
+
+/***************************************************
+ * MOVE : LETTER FROM PIECE TYPE
+ ***************************************************/
+Move::Move(const Position source, const Position destination, const MoveType moveType = MOVE, const PieceType capture = SPACE)
+{
+   this->source = source;
+   dest = destination;
+   this->moveType = moveType;
+   this->capture = capture;
+   
+   promote = SPACE;
+   isWhite = false;
+   
+   // ASCII for lowercase -> 97-122
+   // ASCII for numbers   -> 48-55
+   char colSrc = source.getCol() + 97;
+   char rowSrc = source.getRow() + 49;
+   char colDst = destination.getCol() + 97;
+   char rowDst = destination.getRow() + 49;
+   
+   char suffix = 'i';
+   
+   switch (moveType)
+   {
+   case ENPASSANT:
+      suffix = 'E';
+      break;
+   case CASTLE_KING:
+      suffix = 'c';
+      break;
+   case CASTLE_QUEEN:
+      suffix = 'C';
+      break;
+   default: 
+      switch (capture)
+      {
+         case QUEEN:
+            suffix = 'q';
+            break;
+         case ROOK:
+            suffix = 'r';
+            break;
+         case BISHOP:
+            suffix = 'b';
+            break;
+         case KNIGHT:
+            suffix = 'n';
+            break;
+         case PAWN:
+            suffix = 'p';
+            break;
+      }
+   }
+   
+   if (suffix != 'i')
+      text = {colSrc, rowSrc, colDst, rowDst, suffix};
+   else
+      text = {colSrc, rowSrc, colDst, rowDst};
 }
 
 /***************************************************
@@ -117,6 +217,8 @@ PieceType Move::pieceTypeFromLetter(char letter) const
 	case 'p':
 		pt = PAWN;
 		break;
+   default:
+      pt = INVALID;
 	}
 	return pt;
 }
