@@ -296,12 +296,15 @@ void TestMove::assign_castleQueen()
 void TestMove::getText_simple()
 {
    // SETUP
-   
+   Position posSrc(36);
+   Position posDes(44);
+   Move move = Move(posSrc, posDes, move.MOVE);
+
    // EXERCISE
-   Move move = Move(Position(36), Position(44), move.MOVE);
+   string text = move.getText();
    
    // VERIFY
-   assertUnit(move.getText() == "e5e6");
+   assertUnit(text == "e5e6");
    
 } // TEARDOWN
 
@@ -316,12 +319,15 @@ void TestMove::getText_simple()
 void TestMove::getText_capture()
 {
    // SETUP
+   Position posSrc(36);
+   Position posDes(44);
+   Move move = Move(posSrc, posDes, move.MOVE, ROOK);
    
    // EXERCISE
-   Move move = Move(Position(36), Position(44), move.MOVE, ROOK);
+   string text = move.getText();
    
    // VERIFY
-   assertUnit(move.getText() == "e5e6r");
+   assertUnit(text == "e5e6r");
    
 } // TEARDOWN
 
@@ -336,12 +342,15 @@ void TestMove::getText_capture()
 void TestMove::getText_enpassant()
 {
    // SETUP
+   Position posSrc = Position(36);
+   Position posDes = Position(45);
+   Move move = Move(posSrc, posDes, move.ENPASSANT, PAWN);
    
    // EXERCISE
-   Move move = Move(Position(36), Position(45), move.ENPASSANT, PAWN);
+   string text= move.getText();
    
    // VERIFY
-   assertUnit(move.getText() == "e5f6E");
+   assertUnit(text == "e5f6E");
    
 } // TEARDOWN
 
@@ -355,12 +364,15 @@ void TestMove::getText_enpassant()
 void TestMove::getText_castleKing()
 {
    // SETUP
+   Position posSrc = Position(4);
+   Position posDes = Position(6);
+   Move move = Move(posSrc, posDes, move.CASTLE_KING);
    
    // EXERCISE
-   Move move = Move(Position(4), Position(6), move.CASTLE_KING);
+   string text = move.getText();
    
    // VERIFY
-   assertUnit(move.getText() == "e1g1c");
+   assertUnit(text == "e1g1c");
    
 } // TEARDOWN
 
@@ -374,12 +386,15 @@ void TestMove::getText_castleKing()
 void TestMove::getText_castleQueen()
 {
    // SETUP
+   Position posSrc = Position(4);
+   Position posDes = Position(2);
+   Move move = Move(posSrc, posDes, move.CASTLE_QUEEN);
    
    // EXERCISE
-   Move move = Move(Position(4), Position(2), move.CASTLE_QUEEN);
+   string text = move.getText();
    
    // VERIFY
-   assertUnit(move.getText() == "e1c1C");
+   assertUnit(text == "e1c1C");
    
 } // TEARDOWN
 
